@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>{{BUSINESS_NAME}} | 24/7 Emergency {{SERVICE_TYPE}} in {{CITY_NAME}}, {{STATE}}</title>
+<meta name="description" content="Licensed, insured 24/7 emergency {{SERVICE_TYPE}} service in {{CITY_NAME}}, {{STATE}}. Fast response, upfront pricing, satisfaction guaranteed.">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          navy: { DEFAULT: '#12203A', dark: '#0B1526', light: '#1C314F' },
+          hivis: { DEFAULT: '#FF6A13', dark: '#E0580A', light: '#FF8A42' },
+          paper: '#FAF7F1',
+          steel: '#5B6472',
+          alert: '#D6293E',
+          ok: '#1F7A4D',
+        },
+        fontFamily: {
+          display: ['Oswald', 'sans-serif'],
+          body: ['Inter', 'sans-serif'],
+          mono: ['JetBrains Mono', 'monospace'],
+        },
+      },
+    },
+  }
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background-color: #FAF7F1; }
+  .font-display { font-family: 'Oswald', sans-serif; letter-spacing: 0.01em; }
+  .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+  /* Ticket / work-order perforation motif — the page's signature element */
+  .ticket {
+    position: relative;
+    border: 1.5px dashed #C9C2B4;
+    background: #FFFFFF;
+  }
+  .ticket::before,
+  .ticket::after {
+    content: "";
+    position: absolute;
+    top: -9px;
+    width: 18px;
+    height: 18px;
+    background: #FAF7F1;
+    border: 1.5px dashed #C9C2B4;
+    border-radius: 9999px;
+  }
+  .ticket::before { left: -9px; }
+  .ticket::after { right: -9px; }
+
+  .hazard-strip {
+    background: repeating-linear-gradient(
+      135deg,
+      #FF6A13,
+      #FF6A13 10px,
+      #12203A 10px,
+      #12203A 20px
+    );
+  }
+
+  .safe-bottom { padding-bottom: env(safe-area-inset-bottom, 0); }
+  .safe-top { padding-top: env(safe-area-inset-top, 0); }
+
+  input:focus, select:focus, textarea:focus, button:focus-visible, a:focus-visible {
+    outline: 3px solid #FF6A13;
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+</style>
+</head>
+
+<body class="bg-paper text-navy font-body pb-24 md:pb-0 antialiased">
+
+<!-- ============ SCHEMA.ORG LOCALBUSINESS JSON-LD ============ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Plumber",
+  "name": "{{BUSINESS_NAME}}",
+  "image": "{{LOGO_OR_HERO_IMAGE_URL}}",
+  "url": "{{WEBSITE_URL}}",
+  "telephone": "{{PHONE_NUMBER_E164}}",
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "{{STREET_ADDRESS}}",
+    "addressLocality": "{{CITY_NAME}}",
+    "addressRegion": "{{STATE_ABBR}}",
+    "postalCode": "{{ZIP_CODE}}",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "{{LATITUDE}}",
+    "longitude": "{{LONGITUDE}}"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+      "opens": "00:00",
+      "closes": "23:59"
+    }
+  ],
+  "areaServed": {
+    "@type": "City",
+    "name": "{{CITY_NAME}}"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "{{AVG_RATING}}",
+    "reviewCount": "{{REVIEW_COUNT}}"
+  },
+  "sameAs": [
+    "{{FACEBOOK_URL}}",
+    "{{GOOGLE_BUSINESS_PROFILE_URL}}"
+  ]
+}
+</script>
+
+<!-- ============ STICKY MOBILE-FIRST HEADER ============ -->
+<header class="sticky top-0 z-50 bg-navy safe-top shadow-lg">
+  <div class="hazard-strip h-1 w-full"></div>
+  <div class="max-w-6xl mx-auto flex items-center justify-between px-4 py-3 md:py-4">
+    <div class="flex items-center gap-2">
+      <span class="font-display text-lg md:text-xl font-semibold text-white tracking-wide">
+        {{BUSINESS_NAME}}
+      </span>
+      <span class="hidden sm:inline-block font-mono text-[10px] text-hivis border border-hivis/40 rounded px-1.5 py-0.5">
+        24/7 DISPATCH
+      </span>
+    </div>
+
+    <nav class="hidden md:flex items-center gap-6 font-medium text-sm text-white/80">
+      <a href="#services" class="hover:text-hivis transition-colors">Services</a>
+      <a href="#reviews" class="hover:text-hivis transition-colors">Reviews</a>
+      <a href="#quote" class="hover:text-hivis transition-colors">Get a Quote</a>
+    </nav>
+
+    <a href="tel:{{PHONE_NUMBER_E164}}"
+       class="flex items-center gap-2 bg-hivis hover:bg-hivis-dark text-white font-display font-semibold text-sm md:text-base px-3 py-2 md:px-5 md:py-2.5 rounded-md shadow-md transition-colors">
+      <svg class="w-4 h-4 md:w-5 md:h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+      </svg>
+      <span>Call Now</span>
+    </a>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="bg-navy text-white relative overflow-hidden">
+  <div class="absolute inset-0 opacity-[0.06] bg-[radial-gradient(circle_at_1px_1px,#fff_1px,transparent_0)] bg-[size:22px_22px]"></div>
+
+  <div class="relative max-w-6xl mx-auto px-4 pt-10 pb-14 md:pt-20 md:pb-24 flex flex-col items-start">
+
+    <div class="inline-flex items-center gap-1.5 bg-white/10 border border-white/20 rounded-full px-3 py-1.5 mb-5">
+      <div class="flex text-hivis text-sm" aria-hidden="true">★★★★★</div>
+      <span class="font-mono text-xs text-white/80">{{AVG_RATING}} · {{REVIEW_COUNT}}+ verified jobs</span>
+    </div>
+
+    <h1 class="font-display font-semibold uppercase text-4xl leading-[1.05] sm:text-5xl md:text-6xl md:leading-[1.05] max-w-2xl">
+      24/7 Emergency <span class="text-hivis">{{SERVICE_TYPE}}</span> in {{CITY_NAME}}
+    </h1>
+
+    <p class="mt-5 text-white/70 text-base md:text-lg max-w-lg">
+      Burst pipe. No hot water. No AC in a heat wave. Our licensed technicians are dispatched across {{CITY_NAME}} day or night — most jobs quoted before we hang up.
+    </p>
+
+    <div class="mt-8 flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+      <a href="#quote"
+         class="text-center font-display font-semibold uppercase tracking-wide bg-hivis hover:bg-hivis-dark text-white text-lg px-7 py-4 rounded-md shadow-lg shadow-hivis/20 transition-colors">
+        Request a Free Quote
+      </a>
+      <a href="tel:{{PHONE_NUMBER_E164}}"
+         class="text-center font-display font-semibold uppercase tracking-wide border-2 border-white/30 hover:border-white text-white text-lg px-7 py-4 rounded-md transition-colors">
+        Or Call {{PHONE_NUMBER_DISPLAY}}
+      </a>
+    </div>
+
+    <div class="mt-8 flex flex-wrap gap-x-6 gap-y-2 font-mono text-xs text-white/60">
+      <span>✓ Licensed &amp; Insured</span>
+      <span>✓ Avg. response: {{RESPONSE_TIME, e.g. 45 min}}</span>
+      <span>✓ Upfront flat-rate pricing</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section id="services" class="max-w-6xl mx-auto px-4 py-16 md:py-24">
+  <div class="mb-10 md:mb-14 max-w-xl">
+    <span class="font-mono text-xs text-hivis-dark tracking-widest uppercase">Service Catalog</span>
+    <h2 class="font-display font-semibold uppercase text-3xl md:text-4xl mt-2">What We Handle</h2>
+    <p class="text-steel mt-3">Every truck is stocked for same-day repairs. No job is "too small" for a real quote.</p>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10 pt-4">
+
+    <!-- Service Card -->
+    <div class="ticket rounded-md p-6 pt-7">
+      <span class="font-mono text-[11px] text-hivis-dark">SVC · DRAIN-01</span>
+      <h3 class="font-display font-semibold text-xl mt-2">Drain &amp; Sewer Cleaning</h3>
+      <p class="text-steel text-sm mt-2">Hydro-jetting and camera inspection to clear stubborn clogs fast.</p>
+    </div>
+
+    <div class="ticket rounded-md p-6 pt-7">
+      <span class="font-mono text-[11px] text-hivis-dark">SVC · HTR-02</span>
+      <h3 class="font-display font-semibold text-xl mt-2">Water Heater Repair</h3>
+      <p class="text-steel text-sm mt-2">Tank &amp; tankless repair, replacement, and same-day install.</p>
+    </div>
+
+    <div class="ticket rounded-md p-6 pt-7">
+      <span class="font-mono text-[11px] text-hivis-dark">SVC · LEAK-03</span>
+      <h3 class="font-display font-semibold text-xl mt-2">Leak Detection</h3>
+      <p class="text-steel text-sm mt-2">Non-invasive detection before a slow leak becomes a flood.</p>
+    </div>
+
+    <div class="ticket rounded-md p-6 pt-7">
+      <span class="font-mono text-[11px] text-hivis-dark">SVC · PIPE-04</span>
+      <h3 class="font-display font-semibold text-xl mt-2">Pipe Repair &amp; Repipe</h3>
+      <p class="text-steel text-sm mt-2">Burst pipe emergencies and full home repiping.</p>
+    </div>
+
+    <div class="ticket rounded-md p-6 pt-7">
+      <span class="font-mono text-[11px] text-hivis-dark">SVC · PUMP-05</span>
+      <h3 class="font-display font-semibold text-xl mt-2">Sump Pump Service</h3>
+      <p class="text-steel text-sm mt-2">Installation, repair, and battery backup before the next storm.</p>
+    </div>
+
+    <div class="ticket rounded-md p-6 pt-7">
+      <span class="font-mono text-[11px] text-hivis-dark">SVC · SHUT-06</span>
+      <h3 class="font-display font-semibold text-xl mt-2">Emergency Shutoff</h3>
+      <p class="text-steel text-sm mt-2">Rapid main-line shutoff and damage control, day or night.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ PROOF & TRUST ============ -->
+<section id="reviews" class="bg-navy-light bg-navy py-16 md:py-24">
+  <div class="max-w-6xl mx-auto px-4">
+
+    <div class="mb-10 md:mb-14 max-w-xl">
+      <span class="font-mono text-xs text-hivis tracking-widest uppercase">Field Reports</span>
+      <h2 class="font-display font-semibold uppercase text-3xl md:text-4xl mt-2 text-white">What {{CITY_NAME}} Says</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-10 pt-4">
+
+      <div class="ticket rounded-md p-6 pt-7">
+        <div class="flex items-center justify-between">
+          <div class="flex text-hivis text-sm" aria-hidden="true">★★★★★</div>
+          <span class="font-mono text-[10px] text-steel">JOB #{{TICKET_ID, e.g. 4821}}</span>
+        </div>
+        <p class="text-navy text-sm mt-3">"{{REVIEW_QUOTE_1 — e.g. Had a technician at our door in under 40 minutes on a Sunday night. Fixed and gone before midnight.}}"</p>
+        <div class="mt-4 pt-4 border-t border-dashed border-steel/30 flex items-center justify-between">
+          <span class="font-semibold text-sm">{{REVIEWER_NAME_1}}</span>
+          <span class="font-mono text-[10px] text-steel">{{SERVICE_DATE_1, e.g. Jun 2026}}</span>
+        </div>
+      </div>
+
+      <div class="ticket rounded-md p-6 pt-7">
+        <div class="flex items-center justify-between">
+          <div class="flex text-hivis text-sm" aria-hidden="true">★★★★★</div>
+          <span class="font-mono text-[10px] text-steel">JOB #{{TICKET_ID, e.g. 4790}}</span>
+        </div>
+        <p class="text-navy text-sm mt-3">"{{REVIEW_QUOTE_2 — e.g. Upfront pricing before any work started. No surprise fees. That alone earns the five stars.}}"</p>
+        <div class="mt-4 pt-4 border-t border-dashed border-steel/30 flex items-center justify-between">
+          <span class="font-semibold text-sm">{{REVIEWER_NAME_2}}</span>
+          <span class="font-mono text-[10px] text-steel">{{SERVICE_DATE_2}}</span>
+        </div>
+      </div>
+
+      <div class="ticket rounded-md p-6 pt-7">
+        <div class="flex items-center justify-between">
+          <div class="flex text-hivis text-sm" aria-hidden="true">★★★★★</div>
+          <span class="font-mono text-[10px] text-steel">JOB #{{TICKET_ID, e.g. 4756}}</span>
+        </div>
+        <p class="text-navy text-sm mt-3">"{{REVIEW_QUOTE_3 — e.g. Cleaned up after themselves, explained everything, and the water heater has run perfectly since.}}"</p>
+        <div class="mt-4 pt-4 border-t border-dashed border-steel/30 flex items-center justify-between">
+          <span class="font-semibold text-sm">{{REVIEWER_NAME_3}}</span>
+          <span class="font-mono text-[10px] text-steel">{{SERVICE_DATE_3}}</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="flex flex-wrap gap-3 justify-center mt-12">
+      <span class="bg-white/5 border border-white/15 text-white/80 text-xs font-mono px-3 py-2 rounded-full">Licensed &amp; Insured</span>
+      <span class="bg-white/5 border border-white/15 text-white/80 text-xs font-mono px-3 py-2 rounded-full">{{YEARS_IN_BUSINESS}}+ Years in {{CITY_NAME}}</span>
+      <span class="bg-white/5 border border-white/15 text-white/80 text-xs font-mono px-3 py-2 rounded-full">BBB Accredited</span>
+      <span class="bg-white/5 border border-white/15 text-white/80 text-xs font-mono px-3 py-2 rounded-full">Background-Checked Techs</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT / INTAKE FORM ============ -->
+<section id="quote" class="max-w-2xl mx-auto px-4 py-16 md:py-24">
+  <div class="text-center mb-8">
+    <span class="font-mono text-xs text-hivis-dark tracking-widest uppercase">Work Order Intake</span>
+    <h2 class="font-display font-semibold uppercase text-3xl md:text-4xl mt-2">Request Your Free Quote</h2>
+    <p class="text-steel mt-3">Tell us what's going on — a real technician calls back, usually within minutes.</p>
+  </div>
+
+  <form action="{{FORM_SUBMISSION_ENDPOINT}}" method="POST" class="ticket rounded-lg p-6 sm:p-8 pt-9">
+
+    <div class="flex items-center justify-between mb-6 pb-4 border-b border-dashed border-steel/30">
+      <span class="font-display font-semibold text-sm uppercase tracking-wide text-steel">New Service Request</span>
+      <span class="font-mono text-[10px] text-steel">FORM · {{SITE_ID}}</span>
+    </div>
+
+    <div class="space-y-5">
+      <div>
+        <label for="name" class="block text-sm font-semibold mb-1.5">Full Name</label>
+        <input type="text" id="name" name="name" required
+               placeholder="Jane Smith"
+               class="w-full border border-steel/30 rounded-md px-3.5 py-3 text-base focus:border-hivis">
+      </div>
+
+      <div>
+        <label for="phone" class="block text-sm font-semibold mb-1.5">Phone Number</label>
+        <input type="tel" id="phone" name="phone" required
+               placeholder="(555) 123-4567"
+               class="w-full border border-steel/30 rounded-md px-3.5 py-3 text-base focus:border-hivis">
+      </div>
+
+      <div>
+        <label for="service" class="block text-sm font-semibold mb-1.5">Service Needed</label>
+        <select id="service" name="service" required
+                class="w-full border border-steel/30 rounded-md px-3.5 py-3 text-base bg-white focus:border-hivis">
+          <option value="" disabled selected>Select a service…</option>
+          <option>Drain / Sewer Cleaning</option>
+          <option>Water Heater Repair</option>
+          <option>Leak Detection</option>
+          <option>Pipe Repair / Repipe</option>
+          <option>Sump Pump Service</option>
+          <option>Something else</option>
+        </select>
+      </div>
+
+      <label for="emergency"
+             class="flex items-start gap-3 bg-alert/5 border border-alert/30 rounded-md px-4 py-3.5 cursor-pointer">
+        <input type="checkbox" id="emergency" name="emergency" value="yes"
+               class="mt-0.5 w-5 h-5 accent-alert shrink-0">
+        <span class="text-sm">
+          <span class="font-semibold text-alert">This is an active emergency</span>
+          <span class="block text-steel text-xs mt-0.5">Check this and we'll prioritize dispatch immediately.</span>
+        </span>
+      </label>
+
+      <button type="submit"
+              class="w-full bg-hivis hover:bg-hivis-dark text-white font-display font-semibold uppercase tracking-wide text-lg py-4 rounded-md shadow-lg shadow-hivis/20 transition-colors">
+        Dispatch My Request
+      </button>
+
+      <p class="text-center text-xs text-steel">
+        Prefer to talk now? <a href="tel:{{PHONE_NUMBER_E164}}" class="font-semibold text-hivis-dark underline">Call {{PHONE_NUMBER_DISPLAY}}</a>
+      </p>
+    </div>
+  </form>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="bg-navy-dark text-white/50 text-xs py-8 px-4 text-center hidden md:block">
+  <p>© {{CURRENT_YEAR}} {{BUSINESS_NAME}}. Licensed &amp; insured in {{STATE_ABBR}}. License #{{LICENSE_NUMBER}}.</p>
+</footer>
+
+<!-- ============ STICKY MOBILE FOOTER CTA BAR ============ -->
+<div class="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-steel/20 shadow-[0_-4px_16px_rgba(0,0,0,0.08)] safe-bottom">
+  <div class="grid grid-cols-2 gap-2 p-2.5">
+    <a href="#quote"
+       class="flex items-center justify-center gap-1.5 border-2 border-navy text-navy font-display font-semibold uppercase text-sm py-3 rounded-md">
+      Get Quote
+    </a>
+    <a href="tel:{{PHONE_NUMBER_E164}}"
+       class="flex items-center justify-center gap-1.5 bg-hivis text-white font-display font-semibold uppercase text-sm py-3 rounded-md shadow-md">
+      <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+      </svg>
+      Call Now
+    </a>
+  </div>
+</div>
+
+</body>
+</html>
